@@ -1,3 +1,47 @@
+.navbar {
+    position: relative;
+    padding: 0.5rem;
+    background-color: rgb(101,18,95);
+    background-color: rgba(101,18,95,0.5);
+    z-index: 1;
+}
+
+.navbar .logo {
+    position: relative;
+    left: 2rem;
+    cursor: pointer;
+}
+
+.navbar .links-container {
+    display: table;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100px;
+    color: white;
+    text-decoration: none;
+}
+
+.links-container .navbar-link {
+    display: table-cell;
+    position: relative;
+    height: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    vertical-align: middle;
+    color: white;
+    font-size: 0.625rem;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.links-container .navbar-link:hover {
+    color: rgb(233,50,117);;
+}
+
 body.album {
      background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
      background-repeat: no-repeat;
@@ -5,6 +49,7 @@ body.album {
      background-position: center center;
      background-size: cover;
  }
+
 
  .album-cover-art {
      position: relative;
@@ -50,6 +95,8 @@ body.album {
 
  .song-item-number {
      width: 5%;
+     min-width: 30px;
+
  }
 
  .song-item-title {
@@ -59,6 +106,28 @@ body.album {
  .song-item-duration {
      width: 5%;
  }
+
+  .album-song-button {
+      text-align: center;
+      font-size: 14px;
+      background-color: white;
+      color: rgb(210, 40, 123);
+      border-radius: 50% 50%;
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+  }
+
+  .album-song-button:hover {
+      cursor: pointer;
+      color: white;
+      background-color: rgb(210, 40, 123);
+  }
+
+  .album-song-button span {
+      line-height: 28px;
+  }
+
  /* #2 */
  @media (max-width: 640px) and (min-width: 320px) {
      .album-view-details {

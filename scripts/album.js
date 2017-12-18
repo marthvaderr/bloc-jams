@@ -193,7 +193,52 @@ var previousSong = function previousSong() {
     updateSeekBarWhileSongPlays();
 };
 
+var updateSeekBarWhileSongPlays = function updateSeekBarWhileSongPlays() {
+    if (currentSoundFile) {
+        currentSoundFile.bind('timeupdate', function (event) {
+            var currentTime = this.getTime();
+            var duration = this.getDuration();
+            var seekBarFillRatio = currentTime / duration;
+            var $seekBar = $('.seek-control .seek-bar');
 
+            updateSeekPercentage($seekBar, seekBarFillRatio);
+            setCurrentTimeInPlayerBar(currentTime.toString());
+            if (currentSoundFile.isEnded()) {
+                if (currentlyPlayingSongNumber < currentAlbum.songs.length) {
+                    nextSong();
+                }
+            }
+        });
+    }
+};
+
+var setCurrentTimeInPlayerBar = function setCurrentTimeInPlayerBar(currentTime) {
+    $currentTimeDisplay.text(filterTimeCode(currentTime));
+};
+
+var setTotalTimeInPlayerBar = function setTotalTimeInPlayerBar(totalTime) {
+    $totalTimeDisplay.text(filterTimeCode(totalTime));
+};
+
+var filterTimeCode = function filterTimeCode(timeInSeconds) {
+    timeInSeconds = parseFloat(timeInSeconds);
+    var minutes = Math.floor(timeInSeconds / 60);
+    var seconds = Math.floor(timeInSeconds % 60);
+    if (seconds < 10) {
+        seconds = '0' + seconds;
+    }
+    return minutes + ':' + seconds;
+};
+
+var updateSeekPercentage = function updateSeekPercentage($seekBar, seekBarFillRatio) {
+    var offsetXPercent = seekBarFillRatio * 100;
+    offsetXPercent = Math.max(0, offsetXPercent);
+    offsetXPercent = Math.min(100, offsetXPercent);
+
+    var percentageString = offsetXPercent + '%';
+    $seekBar.find('.fill').width(percentageString);
+    $seekBar.find('.thumb').css({left: percentageString});
+};
 
 var setupSeekBars = function setupSeekBars() {
     var $seekBars = $('.player-bar .seek-bar');

@@ -251,6 +251,7 @@ var $nextButton = $('.main-controls .next');
 var $currentTimeDisplay = $('.current-time');
 var $totalTimeDisplay = $('.total-time');
 
+
 $(document).ready(function () {
     setCurrentAlbum(albumPicasso);
     setupSeekBars();
